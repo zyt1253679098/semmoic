@@ -1,0 +1,12 @@
+name: SemMoic
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - pip:
+      - torch==2.8.0
+      - transformers==4.28.1
+      - numpy==2.0.2
+      - scikit-learn==1.6.1

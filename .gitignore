@@ -1,0 +1,10 @@
+datasets/
+outputs/
+results/
+logs/
+cache/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.ruff_cache/
