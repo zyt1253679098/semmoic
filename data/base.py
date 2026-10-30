@@ -1,4 +1,4 @@
-"""Dataset construction from the released enriched data."""
+"""Dataset construction from TSV annotations and precomputed features."""
 import csv
 import os
 import random

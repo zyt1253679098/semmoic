@@ -25,7 +25,7 @@ def save_model(model, model_dir):
 
 def restore_model(model, model_dir, device):
     state = torch.load(os.path.join(model_dir, 'pytorch_model.bin'), map_location=device)
-    model.load_state_dict(state, strict=False)
+    model.load_state_dict(state, strict=True)
     return model
 
 

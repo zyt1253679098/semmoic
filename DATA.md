@@ -59,15 +59,21 @@ file to a `numpy` array.
 - **MELD-DA**: `Dialogue_ID, Utterance_ID, Utterance, label`. The row
   identifier is `<Dialogue_ID>_<Utterance_ID>`.
 
-In the enriched training files, a label-preserving augmentation has the suffix
-`-DA` and an adversarial sample has the suffix `-DA-anti`. Their seed row is
+In the enriched training files, a label-preserving augmentation's row identifier
+has the suffix `-DA` and an adversarial sample's identifier has the suffix
+`-DA-anti`. Their seed row is
 obtained by removing the suffix. The visual feature of a `-DA` / `-DA-anti` row
 is the visual feature of its seed row; the acoustic feature uses the full row
 identifier.
 
-## Dataset source
+Original and augmented rows use the known intent label names listed in
+`configs.py`. An adversarial row uses `anti-<target label>`, for example
+`anti-Complain`; label names are case-sensitive. Include one header row in each
+TSV file and preserve the split membership and row order.
 
-MIntRec, MIntRec2.0, and MELD-DA are public datasets. The enriched `-DA` and
-`-DA-anti` splits and their precomputed features are provided with the dataset
-archive accompanying this submission. Place the released dataset folders under
-`datasets/` before running the examples.
+## Data placement
+
+Place the dataset folders under `datasets/` using the layout above before
+running the examples. To use another location, set `DATA_ROOT` to the directory
+containing these folders, or pass that directory as `--data_root` when invoking
+the Python scripts directly.

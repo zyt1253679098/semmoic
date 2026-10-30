@@ -9,8 +9,9 @@ This repository contains the proposed two-stage method.
 SemMoic combines semantically diverse data enrichment with a two-stage
 open intent classifier:
 
-1. **Representation learning.** A BERT / Swin / WavLM encoder with a weighted
-   fusion layer is trained with supervised contrastive learning and
+1. **Representation learning.** A BERT text encoder and trainable audio/video
+   Transformers over precomputed WavLM / Swin features, with a weighted fusion
+   layer, are trained with supervised contrastive learning and
    cross-entropy on the enriched training set (original samples, label-preserving
    augmentations, and unlabeled wild data).
 2. **Source-aware ellipsoidal boundary.** The frozen encoder produces
@@ -59,7 +60,7 @@ names.
 The BERT backbone defaults to `bert-base-uncased` from HuggingFace. Set
 `BERT_PATH` to a local BERT directory to run offline.
 
-## Reproducing the paper
+## Reproducing the SemMoic results
 
 Run both datasets with five seeds:
 
@@ -104,7 +105,8 @@ logs/                              Training, export, fit, and run logs
 ```
 
 All four metrics are reported in percent: `acc`, `f1` (all classes),
-`f1-known`, and `f1-open`. Open intent samples appear only in the test sets.
+`f1-known`, and `f1-open`. Held-out benchmark open-intent samples are used only
+for testing; wild training samples are unlabeled and may contain open intents.
 
 ## Expected results
 
@@ -128,8 +130,8 @@ Five seeds (0-4), mean ± standard deviation over seeds:
   validation accuracy, and five random seeds. MIntRec uses patience 5 and
   selects the best epoch; MIntRec2.0 uses patience 3 and selects the best epoch
   at or after epoch 5.
-- The released checkpoints are not included. The paper results are obtained by
-  running the full pipeline from the enriched data.
+- The full-pipeline examples train the representation model before feature
+  export and boundary fitting.
 
 ## Citation
 
